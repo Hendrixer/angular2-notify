@@ -2,7 +2,7 @@ import {enableProdMode} from "angular2/core";
 import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
 import {provideStore} from '@ngrx/store';
 import {showupReducer} from './reducers/notification';
-import { App } from './components/app.ts';
+import {App} from './components/app.ts';
 
 const ENV_PROVIDERS = [];
 // depending on the env mode, enable prod mode or add debugging modules

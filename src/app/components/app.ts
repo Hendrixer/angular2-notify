@@ -15,8 +15,8 @@ import {Notifications} from './notification';
   `
 })
 export class App {
-  notificationRemoveDelay:number = 8000;
-  
+  notificationRemoveDelay: number = 8000;
+
   onRemove(notification) {
     console.log('Remove', notification);
   }

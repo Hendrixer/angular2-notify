@@ -33,7 +33,7 @@ module.exports = {
       { test: /\.html$/, loader: 'raw' }
     ]
   },
-  
+
   devServer: {
     historyApiFallback: true
   },
