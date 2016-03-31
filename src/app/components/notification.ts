@@ -8,9 +8,13 @@ import {
 import {Store} from '@ngrx/store';
 import {NotificationActions} from '../actions/actions';
 import {Notification} from '../interfaces/notification.interface';
-// why does this freak out!!!
-import styles from './notificationStyles.styl';
+
 import 'rxjs/add/operator/do';
+// why does this freak out!!!
+// import styles from './notificationStyles.styl'; // you also have a typo
+
+// you need to use require because this is a weboack feature
+var styles = require('./notificationStyle.styl');
 
 @Component({
   selector: 'hx-notify',
@@ -55,18 +59,18 @@ export class Notifications implements AfterViewInit {
   @Input() location: string;
   @Output() onRemove = new EventEmitter();
   notifications;
-  
+
   constructor(public store: Store<any>, public actions: NotificationActions) {
     this.notifications = store.select('notifications');
   }
-  
+
   ngAfterViewInit() {
     this.notifications
     .subscribe(notifications => {
       this.autoRemoveNotifications(notifications);
-    })
+    });
   }
-  
+
   autoRemoveNotifications(notifications: Notification[] = []) {
     if (!notifications.length) {
       return;
@@ -78,7 +82,7 @@ export class Notifications implements AfterViewInit {
       });
     }, this.removeDelay);
   }
-  
+
   removeNotification(id:string) {
     this.actions.clearNotification(id);
   }

@@ -17,21 +17,21 @@ const createNotification = (state, {type, message}):Notification[] => {
     type,
     message
   }, ...state];
-}
+};
 
 
-export const showupReducer:Reducer<Array<Notification>> = (state: Notification[] = [], action: Action) => {
-  switch(action.type) {
+export const showupReducer: Reducer<Array<Notification>> = (state: Notification[] = [], action: Action) => {
+  switch (action.type) {
     case ADD_ALERT_NOTIFICATION:
       return createNotification(state, {type: 'alert', message: action.payload});
-      
+
     case ADD_ERROR_NOTIFICATION:
       return createNotification(state, {type: 'error', message: action.payload});
-    
+
     case CLEAR_NOTIFICATION:
       return state.filter(noti => noti.id !== action.payload);
-    
+
     default:
       return state;
   }
-}
+};
