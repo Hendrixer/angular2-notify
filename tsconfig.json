@@ -4,18 +4,22 @@
     "module": "commonjs",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "moduleResolution": "node"
   },
   "exclude": [
     "node_modules",
     "typings/main.d.ts",
     "typings/main"
   ],
+  "files": [
+    "typings/browser.d.ts"
+  ],
   "filesGlob": [
     "./src/**/*.ts",
+    "./src/**/*.styl",
     "./test/**/*.ts",
-    "!./node_modules/**/*.ts",
-    "typings/browser.d.ts"
+    "!./node_modules/**/*.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "resolveGlobs": true,

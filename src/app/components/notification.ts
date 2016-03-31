@@ -7,12 +7,10 @@ import {
 } from 'angular2/core';
 import {Store} from '@ngrx/store';
 import {NotificationActions} from '../actions/actions';
-import 'rxjs/add/operator/map';
+import {Notification} from '../interfaces/notification.interface';
+// why does this freak out!!!
+import styles from './notificationStyles.styl';
 import 'rxjs/add/operator/do';
-import 'rxjs/add/observable/from';
-
-import {Observable} from 'rxjs/Observable';
-
 
 @Component({
   selector: 'hx-notify',
@@ -52,11 +50,10 @@ import {Observable} from 'rxjs/Observable';
   `,
   providers: [NotificationActions]
 })
-export class Notification implements AfterViewInit {
+export class Notifications implements AfterViewInit {
   @Input() removeDelay: number;
   @Input() location: string;
   @Output() onRemove = new EventEmitter();
-  @Output() onAdd = new EventEmitter();
   notifications;
   
   constructor(public store: Store<any>, public actions: NotificationActions) {
@@ -66,16 +63,19 @@ export class Notification implements AfterViewInit {
   ngAfterViewInit() {
     this.notifications
     .subscribe(notifications => {
-      this.autoRemoveNotifications(notifications.map(notification => notification.id));
+      this.autoRemoveNotifications(notifications);
     })
   }
   
-  autoRemoveNotifications(notificationIds: string[] = []) {
-    if (!notificationIds.length) {
+  autoRemoveNotifications(notifications: Notification[] = []) {
+    if (!notifications.length) {
       return;
     }
     setTimeout(() => {
-      notificationIds.forEach(id => this.removeNotification(id));
+      notifications.forEach(notification => {
+        this.removeNotification(notification.id);
+        this.onRemove.next(notification);
+      });
     }, this.removeDelay);
   }
   

@@ -18,7 +18,7 @@ module.exports = {
     path: 'build'
   },
   resolve: {
-    extensions: ['', '.js', '.ts', '.html', '.styl']
+    extensions: ['', '.ts', '.js', '.styl', '.html', '.css']
   },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules')
@@ -31,8 +31,7 @@ module.exports = {
       { test: /\.styl$/, loader: 'raw-loader!css-loader!stylus-loader' },
       { test: /\.css$/, loader: 'raw!css' },
       { test: /\.html$/, loader: 'raw' }
-    ],
-    noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/, /angular2-polyfills\.js/]
+    ]
   },
   
   devServer: {

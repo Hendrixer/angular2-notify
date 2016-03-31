@@ -1,18 +1,23 @@
 import {Component} from 'angular2/core';
-import {Notification} from './notification';
+import {Notifications} from './notification';
 
 
 @Component({
   selector: 'app',
-  directives: [Notification],
+  directives: [Notifications],
   template: `
     <div class="app">
       <hx-notify
         [removeDelay]="notificationRemoveDelay"
-      ></hx-notify>
+        (onRemove)="onRemove($event)">
+      </hx-notify>
     </div>
   `
 })
 export class App {
   notificationRemoveDelay:number = 8000;
+  
+  onRemove(notification) {
+    console.log('Remove', notification);
+  }
 }
